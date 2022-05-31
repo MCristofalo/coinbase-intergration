@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useWeb3React } from "@web3-react/core";
+import { CoinbaseWallet, Injected } from "./dapp.js";
 
 function App() {
+  const { activate, deactivate } = useWeb3React();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button
+        onClick={() => {
+          activate(CoinbaseWallet);
+        }}
+      >
+        Coinbase Wallet
+      </button>
+      <button
+        onClick={() => {
+          activate(Injected);
+        }}
+      >
+        Metamask
+      </button>
+
+      <button onClick={deactivate}>Disconnect</button>
     </div>
   );
 }
